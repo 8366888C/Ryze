@@ -8,7 +8,7 @@ const { page } = Astro.props;
     class={`${page.url.prev ? "hover:text-accent" : "text-foreground/60"}`}
     >prev</a
   >
-  <p class="font-mono text-base opacity-90">
+  <p class="font-mono text-sm opacity-90">
     {page.currentPage} of {page.lastPage}
   </p>
   <a

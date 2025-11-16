@@ -23,9 +23,9 @@ export default function Index({ headings = [] }) {
         <div className="bg-background fixed bottom-6 z-3 space-y-3 justify-self-end rounded-lg px-6 py-4 select-none">
           <ul className="space-y-1 pb-2">
             {headings.map((h: any) => (
-              <li key={h.slug}>
+              <li key={h.id}>
                 <a
-                  href={`#${h.slug}`}
+                  href={`#${h.id}`}
                   onClick={() => setOpen(false)}
                   className="index"
                 >

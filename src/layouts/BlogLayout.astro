@@ -10,7 +10,7 @@ const { frontmatter, headings, readTime } = Astro.props;
 <BaseLayout
   title={frontmatter.title}
   description={frontmatter.description}
-  image={frontmatter.image.url}
+  image=""
   url={`https://lunakit.netlify.app/blog/${frontmatter.title}`}
 >
   <ProgressBar client:load />

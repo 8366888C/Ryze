@@ -1,7 +1,6 @@
 import {
   IconSearch,
   IconBrandGithub,
-  IconQuote,
   IconMoon,
   IconSunHigh,
   IconBrandYoutube,
@@ -11,14 +10,10 @@ import {
   IconChevronRight,
   IconArrowRight,
   IconTagFilled,
-  IconBookFilled,
   IconCalendarWeek,
-  IconSortAscending2,
-  IconSortDescending2,
   IconHeart,
   IconMessage,
   IconEye,
-  IconMenu,
   IconX,
   IconMenu2,
   IconClockHour3,
@@ -31,10 +26,6 @@ interface IconProps {
 
 export function SearchIcon({ className }: IconProps) {
   return <IconSearch className={className} />;
-}
-
-export function QuoteIcon({ className }: IconProps) {
-  return <IconQuote className={className} />;
 }
 
 export function MoonIcon({ className }: IconProps) {
@@ -77,20 +68,8 @@ export function TagIcon({ className }: IconProps) {
   return <IconTagFilled className={className} />;
 }
 
-export function BookIcon({ className }: IconProps) {
-  return <IconBookFilled className={className} />;
-}
-
 export function CalendarIcon({ className }: IconProps) {
   return <IconCalendarWeek className={className} />;
-}
-
-export function AscendingIcon({ className }: IconProps) {
-  return <IconSortAscending2 className={className} />;
-}
-
-export function DescendingIcon({ className }: IconProps) {
-  return <IconSortDescending2 className={className} />;
 }
 
 export function HeartIcon({ className }: IconProps) {

@@ -4,7 +4,6 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 /* COLOR SCHEME */
-
 .dark {
   --background: var(--color-zinc-800);
   --foreground: var(--color-zinc-300);
@@ -17,18 +16,43 @@
   --accent: var(--color-red-500);
 }
 
-/* INIT COLORS */
+/* CODE BLOCK */
+.light {
+  .astro-code,
+  .astro-code span {
+    color: var(--shiki-light) !important;
+    background-color: var(--shiki-light-bg) !important;
+    font-style: var(--shiki-light-font-style) !important;
+    font-weight: var(--shiki-light-font-weight) !important;
+    text-decoration: var(--shiki-light-text-decoration) !important;
+  }
+}
+.dark {
+  .astro-code,
+  .astro-code span {
+    color: var(--shiki-dark) !important;
+    background-color: var(--shiki-dark-bg) !important;
+    font-style: var(--shiki-dark-font-style) !important;
+    font-weight: var(--shiki-dark-font-weight) !important;
+    text-decoration: var(--shiki-dark-text-decoration) !important;
+  }
+}
+
+/* INIT TAILWIND THEME */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-accent: var(--accent);
+
+  --font-sans: "Space Grotesk Variable";
+  --font-mono: "IBM Plex Mono";
 }
 
 /* BASE STYLING */
 @layer base {
   /* layouts */
   * {
-    @apply transition-all ease-in-out duration-initial;
+    @apply transition-all duration-150 ease-in-out;
   }
   html {
     @apply bg-background text-foreground selection:bg-accent selection:text-background overflow-y-scroll scroll-smooth antialiased;

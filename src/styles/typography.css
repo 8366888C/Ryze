@@ -79,19 +79,19 @@
     h2 {
       @apply pt-13 pb-3 text-4xl;
       a {
-        @apply text-foreground hover:text-foreground selection:text-background decoration-solid decoration-1 underline-offset-6 hover:underline hover:underline-offset-13 active:no-underline;
+        @apply text-foreground no-underline hover:font-bold hover:no-underline;
       }
     }
     h3 {
       @apply pt-6 pb-2 text-3xl;
       a {
-        @apply text-foreground hover:text-foreground selection:text-background decoration-solid decoration-1 underline-offset-6 hover:underline hover:underline-offset-8 active:no-underline;
+        @apply text-foreground no-underline hover:no-underline;
       }
     }
     h4 {
       @apply pt-3 pb-1 text-2xl;
       a {
-        @apply text-foreground hover:text-foreground selection:text-background decoration-solid decoration-1 underline-offset-6 hover:underline hover:underline-offset-3 active:no-underline;
+        @apply text-foreground no-underline hover:no-underline;
       }
     }
 
@@ -127,13 +127,13 @@
 
     /*  code */
     .astro-code {
-      @apply my-6 p-6;
+      @apply ring-accent my-6 p-6 ring-1;
     }
     .astro-code code {
       @apply bg-inherit;
     }
     code {
-      @apply bg-accent text-background rounded-lg px-2 py-0.5 font-mono text-base opacity-90;
+      @apply bg-accent text-background rounded-lg px-2 py-0.5 font-mono text-base font-semibold opacity-90;
     }
 
     /* lists */

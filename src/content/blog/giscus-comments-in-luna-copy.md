@@ -4,10 +4,6 @@ title: "How to integrate Giscus comments into Luna"
 description: "Comment function on a static blog hosted on Github Pages with Giscus"
 date: 2022-03-20
 author: "Rahul"
-image:
-  url: "https://cdn.pixabay.com/photo/2024/01/18/10/07/sunset-8516639_1280.jpg"
-  alt: "Still waters reflecting clouds and distant mountains during sunset"
-  caption: "photo by xyz : pixabay"
 tags: ["luna", "customize", "comments", "giscus"]
 
 featured: false

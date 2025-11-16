@@ -4,6 +4,7 @@ import PostCard from "../../../components/PostCard.astro";
 import { getCollection } from "astro:content";
 import Pagination from "../../../components/Pagination.astro";
 import type { BlogType } from "../../../content/content.config";
+import { IconBold } from "@tabler/icons-react";
 
 export async function getStaticPaths({ paginate }: { paginate: any }) {
   const blogs = await getCollection("blog");

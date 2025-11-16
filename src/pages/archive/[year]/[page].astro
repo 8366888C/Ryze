@@ -4,7 +4,7 @@ import type { BlogType } from "../../../content/content.config";
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import PostCard from "../../../components/PostCard.astro";
 import Pagination from "../../../components/Pagination.astro";
-import Category from "../../../components/Category.astro";
+import Year from "../../../components/blog/Year.astro";
 
 const blogs = await getCollection("blog");
 const years = [
@@ -52,7 +52,7 @@ const { year } = Astro.params as { year: string };
   <div class="center">
     <div class="flex items-center gap-8">
       <a href="/archive/1" class="heading">Archive</a>
-      <Category years={years} />
+      <Year years={years} />
     </div>
     <ul class="my-3 space-y-3">
       {
