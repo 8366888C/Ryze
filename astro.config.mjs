@@ -30,17 +30,6 @@ export default defineConfig({
     // defaultStrategy: "load",
   },
 
-  redirects: {
-    "/archive": "archive/1",
-    "/blog": "/archive/1",
-    "/blogs": "/archive/1",
-    "/post": "/archive/1",
-    "/posts": "/archive/1",
-    "/tag": "/tags",
-    "/rss": "/rss.xml",
-    "/feed": "/rss.xml",
-  },
-
   output: "static",
   site: "https://ryze.pages.dev",
 });
