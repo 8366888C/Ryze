@@ -36,7 +36,7 @@ export default defineConfig({
     "/blogs": "/archive/1",
     "/post": "/archive/1",
     "/posts": "/archive/1",
-    "/tags/[tag]": "/tags/[tag/1",
+    "/tags/[tag]": "/tags/[tag]/1",
     "/rss": "/rss.xml",
     "/feed": "/rss.xml",
   },

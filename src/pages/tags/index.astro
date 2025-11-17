@@ -3,17 +3,15 @@ import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import type { BlogType } from "../../content.config";
 
-const blogs = await getCollection("blogs");
-const tags = [
-  ...new Set(blogs.map((blog: BlogType) => blog.data.tags).flat()),
-].sort();
+const blogs: BlogType[] = await getCollection("blogs");
+const tags = [...new Set(blogs.map((blog) => blog.data.tags).flat())].sort();
 ---
 
 <BaseLayout
   title="Tags"
-  description="All unique tags of Ryze blogs."
-  image="./favicon.png"
-  url="https://ryze.pages.dev/tags"
+  description="All unique tags of Ryze blogs"
+  author="Rahul"
+  url="https://ryze.pages.dev/tags/1"
 >
   <div class="center">
     <h1 class="heading">Tags</h1>

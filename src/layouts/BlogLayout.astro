@@ -9,8 +9,9 @@ const { frontmatter, headings, readTime } = Astro.props;
 <BaseLayout
   title={frontmatter.title}
   description={frontmatter.description}
-  image={frontmatter.image.url}
-  url={`https://ryze.pages.dev/blog/${frontmatter.title}`}
+  author={frontmatter.author}
+  url={`https://ryze.pages.dev/${frontmatter.slug}`}
+  pubDate={frontmatter.date}
 >
   <ProgressBar client:load />
   <article>

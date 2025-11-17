@@ -1,11 +1,19 @@
 ---
+export interface Props {
+  title: string;
+  description: string;
+  author: string;
+  url: string;
+  pubDate?: Date;
+}
+
 import Seo from "../components/Seo.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-const { title, description, image, url } = Astro.props;
 import "@fontsource-variable/space-grotesk";
 import "@fontsource/ibm-plex-mono";
 import "../styles/global.css";
+const { title, description, author, url, pubDate } = Astro.props;
 ---
 
 <!doctype html>
@@ -15,7 +23,7 @@ import "../styles/global.css";
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <Seo {title} {description} {url} />
+    <Seo {title} {description} {author} {url} {pubDate} />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <link
       rel="alternate"

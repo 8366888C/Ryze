@@ -6,16 +6,14 @@ import Pagination from "../../../components/Pagination.astro";
 import type { BlogType } from "../../../content.config";
 
 export async function getStaticPaths({ paginate }: { paginate: any }) {
-  const blogs = await getCollection("blogs");
-  const tags = [
-    ...new Set(blogs.map((blog: BlogType) => blog.data.tags).flat()),
-  ];
+  const blogs: BlogType[] = await getCollection("blogs");
+  const tags = [...new Set(blogs.flatMap((blog) => blog.data.tags))];
 
   return tags.flatMap((tag) => {
     const filteredBlogs = blogs
-      .filter((blog: BlogType) => blog.data.tags.includes(tag))
+      .filter((blog) => blog.data.tags.includes(tag))
       .sort(
-        (a: BlogType, b: BlogType) =>
+        (a, b) =>
           new Date(b.data.date).getTime() - new Date(a.data.date).getTime(),
       );
     return paginate(filteredBlogs, {
@@ -30,10 +28,10 @@ const { tag } = Astro.params as { tag: string };
 ---
 
 <BaseLayout
-  title={tag}
-  description={`Posts tagged with ${tag}`}
-  image="./favicon.png"
-  url={`https://ryze.pages.dev/tags/${tag}`}
+  title={`Tag ${tag}`}
+  description={`Blogs tagged with ${tag}`}
+  author="Rahul"
+  url={`https://ryze.pages.dev/tags/${tag}/1`}
 >
   <div class="center">
     <h1 class="sub-heading">{tag}</h1>

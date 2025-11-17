@@ -19,9 +19,7 @@ export async function getStaticPaths({
   paginate: (data: BlogType[], options: { pageSize: number }) => unknown;
 }) {
   const blogs = await getCollection("blogs");
-  blogs.sort(
-    (a: BlogType, b: BlogType) => b.data.date.getTime() - a.data.date.getTime(),
-  );
+  blogs.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
   return paginate(blogs, { pageSize: 8 });
 }
@@ -30,10 +28,10 @@ const { page } = Astro.props as { page: { data: BlogType[] } };
 ---
 
 <BaseLayout
-  title="Posts"
-  description="All posts of Ryze"
-  image="./favicon.png"
-  url="https://ryze.pages.dev/archive"
+  title="Blogs"
+  description="All Blogs of Ryze"
+  author="Rahul"
+  url="https://ryze.pages.dev/archive/1"
 >
   <div class="center">
     <div class="flex items-center gap-8">
