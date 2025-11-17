@@ -24,19 +24,6 @@ const { title, description, author, url, pubDate } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <Seo {title} {description} {author} {url} {pubDate} />
-    <link rel="sitemap" href="/sitemap-index.xml" />
-    <link
-      rel="alternate"
-      type="application/rss+xml"
-      title="Ryze"
-      href={new URL("rss.xml", Astro.site)}
-    />
-    <!-- Cloudflare Web Analytics -->
-    <script
-      defer
-      src="https://static.cloudflareinsights.com/beacon.min.js"
-      data-cf-beacon='{"token": "422216f818a04ffba3dc3d00275a169d"}'
-    ></script><!-- End Cloudflare Web Analytics -->
     <script is:inline>
       const savedTheme = localStorage.getItem("theme");
       const prefersDark = window.matchMedia(

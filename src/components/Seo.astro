@@ -41,6 +41,8 @@ const {
   )
 }
 
+<link rel="sitemap" href="/sitemap-index.xml" />
+
 <link
   rel="alternate"
   type="application/rss+xml"
@@ -52,3 +54,10 @@ const {
   name="google-site-verification"
   content={import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION}
 />
+
+<!-- Cloudflare Web Analytics -->
+<script
+  defer
+  src="https://static.cloudflareinsights.com/beacon.min.js"
+  data-cf-beacon='{"token": "e6aeb2075b0e4bc79e63131cf8cd1c33"}'
+></script><!-- End Cloudflare Web Analytics -->
