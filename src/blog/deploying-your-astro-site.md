@@ -1,5 +1,6 @@
 ---
 slug: "deploying-your-astro-site"
+title: "Deploying Your Astro Site: Complete Guide"
 description: "Complete deployment guide for Ryze: builds, hosting options, CI, caching, and production checklist."
 date: 2025-11-20
 author: "Rahul"

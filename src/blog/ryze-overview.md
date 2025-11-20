@@ -1,24 +1,28 @@
-slug: "ryze-starter-guide"
-title: "Ryze — Project Overview & Starter Guide"
-description: "Complete reference for the Ryze Astro + Tailwind starter: structure, features, and how to customize it as a theme or starter"
-date: 2025-11-20
-
 ---
-
-slug: "ryze-starter-guide"
-title: "Ryze Starter Guide — Quick Reference"
-description: "Minimal, focused guide for running and customizing Ryze (Astro v5 + Tailwind v4)."
+slug: "ryze-overview"
+title: "Ryze -  Project Overview & Starter Guide"
+description: "Complete overview and feature set of Ryze Astro starter"
 date: 2025-11-20
 author: "Rahul"
-Ryze is a content-first Astro starter built to be small, fast, and practical. This guide gives you a no-nonsense reference: what Ryze provides out of the box, how to run it locally, where to make the common edits, and short rationale for each change. No marketing copy — just exact steps and reasons.
+tags: ["ryze", "astro", "theme", "guide"]
+featured: true
+---
 
-What Ryze ships (concise)
+<hr />
 
-- Astro v5: server-side-compiled static pages and components. Astro renders to static HTML by default, so pages load fast and ship zero JS unless you opt into islands.
-- Tailwind CSS v4: utility-first styling with a `tailwind.config.js` ready to extend colors, spacing, and font-family.
-- Markdown blog: posts under `src/blog/` with frontmatter for metadata, consumed by the dynamic blog route(s) in `src/pages/`.
-- TypeScript support and React integration: use `.tsx` islands for client interactivity where needed (e.g., `ThemeToggle.tsx`).
-- SEO and editorial features: `Seo.astro`, RSS, sitemap integration, featured posts and tag pages.
+## Introduction
+
+Ryze is a modern, content-first and responsive Astro template / theme built to be small, fast, and practical. This guide gives you a no-nonsense reference on what Ryze provides out of the box, how to run it locally, and where to make common edits.
+
+<br />
+
+What Ryze ships
+
+- **Astro v5**: server-side-compiled static pages and components. Astro renders to static HTML by default, so pages load fast and ship zero JS unless using islands.
+- **Tailwind CSS v4**: utility-first styling with theme and typography changes by extending colors, spacing, and font-family and more. Mobile first responsive design baked in.
+- **Markdown Blogs**: posts with frontmatter for metadata, consumed by the dynamic blog route(s) using the Content Collection API. Supports components in MDX if needed.
+- **TypeScript support and React integration**: use React hooks to build custom components for client-side interactivity when needed.
+- **SEO and editorial features**: meta tags, OG graph, robots.txt, RSS, sitemap integration, featured blogs and tags.
 
 Run it locally (exact commands)
 

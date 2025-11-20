@@ -1,6 +1,5 @@
 ---
 slug: "styling-with-tailwind"
-
 title: "Styling with Tailwind in Ryze — Practical Guide"
 description: "In-depth, actionable instructions for using Tailwind CSS v4 in Ryze: exact config, patterns, and production considerations."
 date: 2025-11-20

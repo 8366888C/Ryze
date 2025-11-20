@@ -1,6 +1,5 @@
 ---
 slug: "understanding-layouts-components"
-
 title: "Layouts & Components — Ryze"
 description: "Detailed, practical guide to layouts and components in Ryze. Explains structure, responsibilities, and best practices you should apply immediately."
 date: 2025-11-20
