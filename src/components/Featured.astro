@@ -12,9 +12,9 @@ const blogs_ = blogs.map((blog) => {
     data: { ...blog.data, readTime: minutes },
   };
 });
-const featuredBlogs = blogs_.filter(
-  (blog: BlogType) => blog.data.featured === true,
-);
+const featuredBlogs = blogs_
+  .filter((blog: BlogType) => blog.data.featured === true)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 ---
 
 <h2 class="section-heading">F E A T U R E D</h2>

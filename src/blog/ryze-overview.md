@@ -1,10 +1,10 @@
 ---
 slug: "ryze-overview"
 title: "Ryze -  Project Overview & Starter Guide"
-description: "Complete overview and feature set of Ryze Astro starter"
+description: "Complete overview and feature set of Ryze Astro starter along with layouts and components included."
 date: 2025-11-20
 author: "Rahul"
-tags: ["ryze", "astro", "theme", "guide"]
+tags: ["ryze", "astro", "template", "guide"]
 featured: true
 ---
 
@@ -37,6 +37,110 @@ See the [SOURCE CODE](https://github.com/8366888C/Ryze) for more details.
   <figcaption>Ryze Lighthouse Score</figcaption>
   </a>
 </figure>
+
+<br />
+
+## [Technologies Used](#technologies-used)
+
+### [Astro Framework](#astro-framework)
+
+Astro is a modern web framework optimized for content-driven sites.
+
+#### [Island Architecture (High-Level Explanation)](#island-architecture-high-level-explanation)
+
+Traditional web frameworks send all your JavaScript to the browser. Astro uses "Islands Architecture"—think of your page as mostly static HTML with small interactive "islands" of JavaScript.
+
+For example:
+
+- **Static**: Blog post content, headers, footers → rendered as HTML
+- **Interactive**: Theme toggle, comment form → ships minimal JavaScript
+
+This hybrid approach gives you the best of both worlds. SEO benefits of static sites with interactivity where you need it.
+
+<br />
+
+#### [Static Site Generation](#static-site-generation)
+
+Astro generates your entire site at build time into static HTML.
+<br />
+This means:
+
+- **Ultra-fast**: Serve pre-built HTML instead of computing on each request
+- **Secure**: No server-side code execution, no databases to protect
+- **Scalable**: Deploy anywhere - static hosting, CDNs, even S3
+- **Eco-friendly**: Less computational overhead
+
+<br />
+
+### [Tailwind CSS](#tailwind-css)
+
+Instead of writing custom CSS, Tailwind provides a comprehensive set of pre-defined utility classes.
+
+```html
+<!-- Before: Write custom CSS -->
+<style>
+  .card {
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    background-color: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+</style>
+<div class="card">...</div>
+
+<!-- After: Compose utilities -->
+<div class="rounded-lg bg-white p-6 shadow-md">...</div>
+```
+
+#### [Customization Possibilities](#customization-possibilities)
+
+- Extend color palettes with your brand colors
+- Adjust spacing, typography, and breakpoints
+- Add custom utilities for frequently-used patterns
+- Configure plugins for extended functionality
+
+Everything from light mode to dark mode theming is configurable without leaving your config file.
+
+<br />
+
+### [Markdown Content System](#markdown-content-system)
+
+#### [MD/MDX Files](#mdmdx-files)
+
+Write your content in Markdown, the human-friendly markup language. Astro also supports MDX, which lets you embed React or Vue components directly in your markdown:
+
+```markdown
+---
+title: "Interactive Blog Post"
+---
+
+This is regular markdown.
+
+<InteractiveCounter client:load />
+
+More markdown below the component.
+```
+
+<br />
+
+#### [Frontmatter Metadata](#frontmatter-metadata)
+
+YAML frontmatter at the top of your markdown files stores metadata.
+
+```markdown
+---
+title: "Post Title"
+description: "What's this about?"
+date: 2025-11-19
+author: "Your Name"
+tags: ["tag1", "tag2"]
+featured: true
+---
+```
+
+This metadata is parsed and available to your layout templates, enabling automatic sorting, filtering, and organized content management.
+
+<br />
 
 ## Project Structure
 
@@ -106,290 +210,80 @@ Ryze
 └── README.md
 ```
 
-#### Run it locally
-
-```powershell
-git clone git@github.com:8366888C/Ryze.git
-cd Ryze
-npm install
-npm run dev
-```
-
-This project sets `http://localhost:4321` port in package scripts or dev server config. Change it only if you have port conflicts.
-
-<br />
-
-#### File map - what to change and why
-
-- `astro.config.mjs` - Edit `site` to your production domain (used by sitemap, canonical URLs). Add or remove integrations here (e.g., `@astrojs/image`, `@astrojs/tailwind`). Keep `outDir` only if you need a custom build folder.
-- `tailwind.config.js` - Adjust `content` globs to include any custom file extensions; extend `theme` with brand colors and fonts. Incorrect globs will cause missing CSS in production due to purge.
-- `src/styles/global.css` - This is where you include Tailwind directives and your CSS `@layer base/components`. Put shared class sets in `@layer components` so Tailwind retains them in production.
-- `src/layouts/BaseLayout.astro` - The global wrapper: edit head tags (fonts, meta defaults), header/footer placement, and main container width. Changing layout affects every page.
-- `src/layouts/BlogLayout.astro` - Controls article rendering: meta injection (title, description), date display, and optional table of contents. Edit typography and spacing to control reading experience.
-- `src/components/*` - Small, single-purpose components: `Header.astro`, `Footer.astro`, `PostCard.astro`, `Seo.astro`. Edit these for site-wide UI changes. Keep them small and composable.
-- `src/blog/*.md` - Author content here; frontmatter drives routing and metadata. Use `slug` for stable URLs.
-
-Authoring and content rules
-
-- Minimal required frontmatter: `slug`, `title`, `description`, `date`, `author`.
-- Optional fields: `tags` (array), `featured` (boolean), `cover` (path). If you include `cover` reference an image under `/public` or `/src/image`.
-- Use `.md` files for static content. If you need React components inside content, use `.mdx` and import the component explicitly.
-
-Styling and Tailwind tips
-
-- Keep content globs accurate in `tailwind.config.js` so needed classes are not purged in production. Typical glob: `./src/**/*.{astro,html,js,jsx,ts,tsx,md,mdx}`.
-- For frequently repeated long utility lists (button variants, card styles), define them once in `src/styles/global.css` inside `@layer components {}` and use those class names in templates. This improves readability and ensures the utilities are included in the final CSS.
-- Use the Typography plugin (`prose`) for article content to save manual typographic rules. Add the plugin in `tailwind.config.js` and apply `class="prose"` to article containers.
-
-Build and deploy (practical)
-
-```powershell
-npm run build    # outputs static files to dist/
-npm run preview  # optional: preview the built site locally
-```
-
-Recommended host: Cloudflare Pages for global CDN and edge caching. Netlify and Vercel are fully supported too — set `Build command` = `npm run build` and `Publish directory` = `dist`.
-
-Short production checklist
-
-1. `astro.config.mjs` `site` value points to production domain.
-2. All required frontmatter present and slugs stable.
-3. `tailwind.config.js` `content` globs include all source files.
-4. Images optimized and stored under `/public` or processed by an image integration.
-5. Build locally and run `npm run preview` to check markup and assets.
-
-If you want, I can add exactly one of these for you now: update brand colors in `tailwind.config.js`, wire Cloudflare Pages config, or create a small contributor mapping listing each component and its purpose. Tell me which one and I’ll implement it.
-Practical tips
-
-- Keep frontmatter complete: `slug`, `title`, `description`, `date`, `author`.
-- Use `@layer components` in `global.css` for reusable class sets so Tailwind keeps them in production.
-- Add `PUBLIC_` prefix to env vars that need client-side access; keep secrets in host UI.
-
-If you want, I can add deploy configs or a small contributor guide that maps every component to its purpose.
+### [Overview of Key Directories & Files](#overview-of-key-directories--files)
 
 #### [Clean Folder Structure](#clean-folder-structure)
 
 The starter uses a thoughtful organizational system:
 
-- **src/pages**: Routes in Astro—file and folder names automatically become URL paths
+- **src/pages**: Routes in Astro-file and folder names automatically become URL paths
 - **src/layouts**: Reusable page templates for consistency across your site
 - **src/components**: Modular UI pieces that you can combine to build pages
 - **src/blog**: Markdown content files with structured metadata
-- **public**: Static assets like images, favicons, and downloadable files
+- **src/image**: Static content images used across the site
 
 This structure scales beautifully. Whether you have 5 pages or 500, everything stays organized and maintainable.
 
-```
-src/
-  ├── pages/
-  │   ├── index.astro           # Home page
-  │   ├── blog/
-  │   │   └── [slug].astro      # Dynamic blog routes
-  │   └── 404.astro             # Error page
-  ├── layouts/
-  │   ├── BaseLayout.astro      # Main layout
-  │   └── BlogLayout.astro      # Blog-specific layout
-  ├── components/
-  │   ├── Header.astro
-  │   ├── Footer.astro
-  │   └── PostCard.astro
-  └── blog/
-      └── your-post.md          # Your markdown files
-```
+<br />
 
 #### [Extendable Layouts](#extendable-layouts)
 
 Layouts are template files that wrap your content. Need a different design for blog posts vs. landing pages? Create a new layout, define it in your file's frontmatter, and you're done.
 
+<br />
+
 Layouts support nesting, so you can create BaseLayout → BlogLayout → SpecializedBlogLayout chains without code duplication.
 
-### [SEO-Friendly Setup](#seo-friendly-setup)
-
-#### [Meta Tags](#meta-tags)
-
-The starter includes a dedicated SEO component that handles:
-
-- Open Graph tags for social media previews
-- Twitter Card tags for better sharing
-- Canonical URLs to prevent duplicate content issues
-- Structured data for search engines
-- Dynamic title and description generation
-
-Simply define your metadata in frontmatter, and the system generates proper HTML:
-
-```markdown
----
-title: "My Blog Post"
-description: "A brief summary for search results"
----
-```
-
-#### [Sitemap + RSS](#sitemap--rss)
-
-Automatic sitemap generation helps search engines crawl your entire site. RSS feeds allow readers to subscribe to your content using their favorite readers. Both are generated automatically—no configuration needed.
-
 <br />
 
-### [Responsive Design with Tailwind](#responsive-design-with-tailwind)
-
-#### [Mobile-First Approach](#mobile-first-approach)
-
-Every component in this starter is designed mobile-first. This means we design for small screens, then add enhancements for larger screens. The result is a site that works beautifully everywhere.
-
-Use Tailwind's responsive prefixes to adapt your layout:
-
-```html
-<div class="flex flex-col md:flex-row lg:flex-row-reverse">
-  <!-- Mobile: column layout, Tablet+: row layout, Desktop: reversed row -->
-</div>
-```
-
-#### [Utility Class Structure](#utility-class-structure)
-
-Tailwind's utility-first approach means you build designs by composing small, reusable classes:
-
-```html
-<button
-  class="rounded-lg bg-blue-600 px-4 py-2 text-white transition-colors hover:bg-blue-700"
->
-  Click Me
-</button>
-```
-
-No writing CSS files. No naming class conflicts. Just combine utilities until your design looks right. It sounds strange at first, but it becomes second nature quickly and dramatically speeds up development.
-
-<br />
-
-## [Technologies Used](#technologies-used)
-
-### [Astro Framework](#astro-framework)
-
-Astro is a modern web framework optimized for content-driven sites.
-
-#### [Island Architecture (High-Level Explanation)](#island-architecture-high-level-explanation)
-
-Traditional web frameworks send all your JavaScript to the browser. Astro uses "Islands Architecture"—think of your page as mostly static HTML with small interactive "islands" of JavaScript.
-
-For example:
-
-- **Static**: Blog post content, headers, footers → rendered as HTML
-- **Interactive**: Theme toggle, comment form → ships minimal JavaScript
-
-This hybrid approach gives you the best of both worlds: SEO benefits of static sites with interactivity where you need it.
-
-#### [Static Site Generation](#static-site-generation)
-
-Astro generates your entire site at build time into static HTML. This means:
-
-1. **Ultra-fast**: Serve pre-built HTML instead of computing on each request
-2. **Secure**: No server-side code executing, no databases to protect
-3. **Scalable**: Deploy anywhere—static hosting, CDNs, even S3
-4. **Eco-friendly**: Less computational overhead
-
-<br />
-
-### [Tailwind CSS](#tailwind-css)
-
-#### [Utility-first Styling](#utility-first-styling)
-
-Instead of writing custom CSS, Tailwind provides a comprehensive set of pre-defined utility classes:
-
-```html
-<!-- Before: Write custom CSS -->
-<style>
-  .card {
-    padding: 1.5rem;
-    border-radius: 0.5rem;
-    background-color: white;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  }
-</style>
-<div class="card">...</div>
-
-<!-- After: Compose utilities -->
-<div class="rounded-lg bg-white p-6 shadow-md">...</div>
-```
-
-#### [Customization Possibilities](#customization-possibilities)
-
-Tailwind is highly customizable. Modify `tailwind.config.js` to:
-
-- Extend color palettes with your brand colors
-- Adjust spacing, typography, and breakpoints
-- Add custom utilities for frequently-used patterns
-- Configure plugins for extended functionality
-
-Everything from light mode to dark mode theming is configurable without leaving your config file.
-
-<br />
-
-### [Markdown Content System](#markdown-content-system)
-
-#### [MD/MDX Files](#mdmdx-files)
-
-Write your content in Markdown, the human-friendly markup language. Astro also supports MDX, which lets you embed React or Vue components directly in your markdown:
-
-```markdown
----
-title: "Interactive Blog Post"
----
-
-This is regular markdown.
-
-<InteractiveCounter client:load />
-
-More markdown below the component.
-```
-
-#### [Frontmatter Metadata](#frontmatter-metadata)
-
-YAML frontmatter at the top of your markdown files stores metadata:
-
-```markdown
----
-title: "Post Title"
-description: "What's this about?"
-date: 2025-11-19
-author: "Your Name"
-tags: ["tag1", "tag2"]
-featured: true
----
-```
-
-This metadata is parsed and available to your layout templates, enabling automatic sorting, filtering, and organized content management.
-
-<br />
-
-## [Project Structure Overview](#project-structure-overview)
-
-### [Root-Level Files](#root-level-files)
+### [Root Level Files](#root-level-files)
 
 #### [astro.config](#astro-config)
 
-This is Astro's configuration file. Here you:
+This is Astro's configuration file.
 
-- Configure integrations (like Tailwind, React, etc.)
-- Set your site URL for SEO
-- Define output format and build options
+<br />
+
+Here you can:
+
+- Configure plugins and integrations like Tailwind CSS, React and Sitemap
 - Add custom vite configuration
+- Add custom shiki themes or transformers
+- Define output and build options
+- Set your site URL for SEO
 
 ```javascript
+// @ts-check
 import { defineConfig } from "astro/config";
-import tailwind from "@astrojs/tailwind";
+import tailwindcss from "@tailwindcss/vite";
+import react from "@astrojs/react";
+import sitemap from "@astrojs/sitemap";
 
+// https://astro.build/config
 export default defineConfig({
-  site: "https://yoursite.com",
-  integrations: [tailwind()],
+  vite: {
+    plugins: [tailwindcss()],
+  },
+  integrations: [react(), sitemap()],
+
+  markdown: {
+    shikiConfig: {
+      markdown shikiConfig ...
+    },
+  },
+
+  output: "static",
+  site: "https://ryze.pages.dev",
 });
 ```
 
-#### [package.json](#package-json)
+#### [package.json](#packagejson)
 
-Lists your project's dependencies and npm scripts:
+Helps you manage and maintain your project's dependencies and npm scripts.
 
 ```json
 {
-  "name": "my-astro-blog",
+  "name": "ryze",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
@@ -402,7 +296,7 @@ Lists your project's dependencies and npm scripts:
 }
 ```
 
-Run `npm run dev` to start development, `npm run build` to create production files.
+Run `npm run dev` to start development, `npm run build` to create dist.
 
 <br />
 
@@ -410,56 +304,99 @@ Run `npm run dev` to start development, `npm run build` to create production fil
 
 #### [layouts](#layouts)
 
-##### [Blog Layout](#blog-layout)
+##### [Base Layout](#base-layout)
 
-Specialized template for blog posts. Typically includes:
+The foundation layout used by most pages, extending it for specific needs.
+<br />
+Includes:
 
-- Post header with title, date, and author
-- Table of contents (optional)
-- Main content area
-- Post navigation (previous/next posts)
-- Related posts or tags section
+- HTML structure and head tags for SEO optimized pages (meta, fonts, favicons)
+- Header and navigation including theme toggle and rss
+- Footer including social links and copyright
+- Main content container with max-width and padding
+- Global and typography styles
 
 ```astro
 ---
-// layouts/BlogLayout.astro
-interface Props {
-  frontmatter: {
-    title: string;
-    date: Date;
-    author: string;
-  };
+export interface Props {
+  title: string;
+  description: string;
+  author: string;
+  url: string;
+  pubDate?: Date;
 }
 
-const { frontmatter } = Astro.props;
+import Seo from "../components/Seo.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import "@fontsource/font-name";
+import "../styles/global.css";
+const { title, description, author, url, pubDate } = Astro.props;
 ---
 
-<html>
+<!doctype html>
+<html lang="en" dir="ltr">
   <head>
-    <title>{frontmatter.title}</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <Seo {title} {description} {author} {url} {pubDate} />
+    <script is:inline>
+      custom scripts ...
+    </script>
   </head>
-  <body>
-    <header>
-      <h1>{frontmatter.title}</h1>
-      <p>{frontmatter.author} • {frontmatter.date.toLocaleDateString()}</p>
-    </header>
-    <main>
+  <body class="body-tailwind-classes">
+    <Header />
+    <main class="main-tailwind-classes">
       <slot />
     </main>
+    <Footer />
   </body>
 </html>
 ```
 
-##### [Base Layout](#base-layout)
+<br />
 
-The foundation layout used by most pages. Includes:
+##### [Blog Layout](#blog-layout)
 
-- HTML structure and head tags
-- Header and navigation
-- Footer
-- Global styles
+Specialized template for blog posts.
+<br />
+Includes:
 
-All other layouts typically extend this one.
+- Meta tags for SEO (title, description, OG tags) based on frontmatter
+- Reading Progress Bar
+- Blog header component which renders blog title, date, read time and attached tags
+- Table of contents (optional)
+- Main content area wrapped with tailwind typography styles
+
+```astro
+---
+import ProgressBar from "../components/ProgressBar";
+import BaseLayout from "./BaseLayout.astro";
+import Title from "../components/Title.astro";
+
+const { frontmatter, readTime } = Astro.props;
+---
+
+<BaseLayout
+  title={frontmatter.title}
+  description={frontmatter.description}
+  author={frontmatter.author}
+  url={`https://ryze.pages.dev/${frontmatter.slug}`}
+  pubDate={frontmatter.date}
+>
+  <ProgressBar client:load />
+  <article>
+    <div class="center">
+      <Title frontmatter={frontmatter} readTime={readTime} />
+      <section class="markdown">
+        <slot />
+      </section>
+    </div>
+  </article>
+</BaseLayout>
+```
 
 <br />
 
@@ -467,119 +404,177 @@ All other layouts typically extend this one.
 
 ##### [Header](#header)
 
-Navigation bar component. Usually includes:
+Navigation bar component (fixed top).
+<br />
+Includes:
 
-- Site logo/brand
+- Site/Brand name or logo
 - Navigation menu
-- Theme toggle button
-- Mobile menu (hamburger)
+- Theme toggle button (react island)
+- RSS feed link
+
+```astro
+---
+import ThemeToggle from "./ThemeToggle";
+import Navigation from "./Navigation.astro";
+import { IconRss } from "@tabler/icons-react";
+---
+
+<header>
+  <a
+    href="/"
+    class:list={[
+      "text-xl tracking-wider select-none",
+      Astro.url.pathname === "/" ? "text-accent" : "",
+    ]}>Ryze</a
+  >
+  <div class="flex items-center justify-center gap-6">
+    <Navigation />
+
+    <div class="flex items-center justify-center gap-4">
+      <ThemeToggle client:load />
+      <a href="/rss.xml" aria-label="rss" title="rss">
+	  	<IconRss className="active-foreground size-5" />
+	  </a>
+    </div>
+  </div>
+</header>
+```
+
+<br />
 
 ##### [Footer](#footer)
 
-Site footer. Typically contains:
+Website wide footer (fixed bottom).
+<br />
+Includes:
 
 - Copyright information
 - Social media links
-- Additional navigation
-- Sitemap links
+- Credits section
+
+```astro
+---
+import Socials from "./Socials.astro";
+---
+
+<footer>
+  <Socials />
+  <div>
+    <p>© 2025 MIT License</p>
+    <p>powered by <a
+        href="https://astro.build"
+        target="blank"
+        class="hover:text-accent"
+        aria-label="astro site">Astro</a
+      > &
+      <a href="" class="hover:text-accent" aria-label="Ryze site">Ryze</a>
+    </p>
+  </div>
+</footer>
+```
+
+<br />
 
 ##### [PostCard](#postcard)
 
-A reusable component for displaying blog post previews in lists:
+A reusable component for displaying blog post information in card format with title, date, tags and link to full post.
 
 ```astro
 ---
-// components/PostCard.astro
-interface Props {
-  title: string;
-  description: string;
-  date: Date;
-  tags: string[];
-  slug: string;
-}
+import { IconArrowRight } from "@tabler/icons-react";
 
-const { title, description, date, tags, slug } = Astro.props;
+const { title, date, url, tags } = Astro.props;
 ---
 
-<article class="rounded-lg border p-4 transition-shadow hover:shadow-lg">
-  <h3 class="mb-2 text-xl font-bold">{title}</h3>
-  <p class="mb-4 text-gray-600">{description}</p>
-  <div class="flex items-center justify-between">
-    <span class="text-sm text-gray-500">{date.toLocaleDateString()}</span>
-    <a href={`/blog/${slug}`} class="text-blue-600 hover:underline"
-      >Read More →</a
-    >
+<a href={url}>
+  <div class="mx-4 mt-2 flex items-center justify-between gap-6">
+    <div class="flex items-center gap-3">
+      <h3>
+        {title}
+      </h3>
+    </div>
+    <div class="flex">
+      <p>{date}</p>
+      <IconArrowRight />
+    </div>
   </div>
-</article>
+  <div>
+    <div class="mx-3 flex flex-wrap">
+      {
+        tags.map((tag: string) => (
+          <p>{tag}</p>
+        ))
+      }
+    </div>
+  </div>
+</a>
 ```
 
 <br />
 
-#### [pages](#pages)
+### [SEO-Friendly Setup](#seo-friendly-setup)
 
-##### [Static Pages](#static-pages)
+#### [Meta Tags](#meta-tags)
 
-Individual `.astro` files become routes. `src/pages/about.astro` becomes `/about`.
+The theme includes a dedicated SEO component that handles:
 
-```astro
+- Open Graph tags for social media previews
+- Twitter Card tags for better sharing
+- Canonical URLs to prevent duplicate content issues
+- Structured data for search engines
+- Dynamic title and description generation
+
+Simply define your metadata in frontmatter, and the system generates proper HTML.
+
+```markdown
 ---
-// src/pages/about.astro
-import BaseLayout from "../layouts/BaseLayout.astro";
+title: "My Blog Post"
+description: "A brief summary for search results"
+date: 2025-11-20
+author: "Rahul"
 ---
-
-<BaseLayout title="About Me">
-  <h1>About Me</h1>
-  <p>Your bio here...</p>
-</BaseLayout>
 ```
 
-##### [Blog Index](#blog-index)
+#### [Sitemap + RSS](#sitemap--rss)
 
-Dynamic routes using square brackets: `src/pages/blog/[slug].astro` creates routes like `/blog/my-post`.
-
-The template queries markdown files, generates a page for each, and handles metadata automatically.
+Automatic sitemap generation helps search engines crawl your entire site. RSS feeds allow readers to subscribe to your content using their favorite readers. Both are generated automatically, no configuration needed.
 
 <br />
 
-### [public Directory](#public-directory)
+### [Responsive Design with Tailwind](#responsive-design-with-tailwind)
 
-#### [Assets](#assets)
+#### [Mobile-First Approach](#mobile-first-approach)
 
-Store static files here that don't need processing:
+Every component in this template is designed to be mobile responsive. This means we design for small screens, then add enhancements for larger screens. The result is a site that works beautifully everywhere.
 
-- Images
-- Videos
-- PDFs
-- Fonts
+<br/>
 
-These files copy directly to your build without modification.
+Use Tailwind's responsive prefixes to adapt your layout:
 
-#### [Favicons](#favicons)
+```html
+<div class="flex flex-col md:flex-row lg:flex-row-reverse">
+  <!-- Mobile: column layout, Tablet+: row layout, Desktop: reversed row -->
+</div>
+```
 
-Your site's icon files:
+#### [Utility Class Structure](#utility-class-structure)
 
-- `favicon.ico` - Classic browser tab icon
-- `apple-touch-icon.png` - iOS home screen icon
-- `manifest.json` - PWA configuration (optional)
+Tailwind's utility-first approach means you build designs by composing small, reusable classes.
+
+```html
+<button
+  class="rounded-lg bg-blue-600 px-4 py-2 text-white transition-colors hover:bg-blue-700"
+>
+  Click Me
+</button>
+```
+
+You can look through some of the custom tailwind classes for this template in `src/styles/utility.css`. For markdown typography styles, see `src/styles/typography.css`.
 
 <br />
-
-## [Getting Started](#getting-started)
-
-Now that you understand the starter's architecture and capabilities, you're ready to start building. Here are your next steps:
-
-1. **Clone or fork the repository** to your machine
-2. **Install dependencies**: Run `npm install`
-3. **Start developing**: Run `npm run dev` and open your browser to `http://localhost:3000`
-4. **Customize**: Edit components, layouts, and colors to match your vision
-5. **Add content**: Create markdown files in `src/blog` with your posts
-6. **Deploy**: Build with `npm run build` and deploy the `dist` folder
-
----
+<br />
 
 The starter is designed to be your foundation, not your limitation. Extend it, modify it, and make it your own. Happy building!
 
-<figure class="group">
-<img src="/src/image/background.svg" loading="lazy" alt="Astro + Tailwind CSS workflow visualization" title="Build fast, modern content-driven sites" />
-<figcaption>The Astro + Tailwind CSS Starter empowers you to build fast, beautiful content-driven websites</figcaption>
-</figure>
+---

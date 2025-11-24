@@ -2,9 +2,9 @@
 slug: "creating-your-first-blog"
 title: "Creating Your First Blog Post with Ryze"
 description: "A practical walkthrough for writing, previewing, and publishing your first blog using the Ryze Astro + Tailwind starter"
-date: 2025-11-20
+date: 2025-11-23
 author: "Rahul"
-tags: ["blogging", "markdown", "guide"]
+tags: ["blogging", "markdown", "ryze"]
 featured: true
 ---
 
@@ -89,7 +89,8 @@ After push, your hosting platform will pick up the build. Verify on production o
 - Review changes locally before publishing to avoid issues.
 
 <br />
+<br />
 
-Following these steps ensures your blog post is properly formatted, discoverable, and ready for your audience. Happy blogging with Ryze!
+Following these steps ensures your blog post is properly formatted, discoverable, and ready for your audience. Happy blogging!
 
 <hr />
