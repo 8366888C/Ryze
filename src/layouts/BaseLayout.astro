@@ -7,11 +7,11 @@ export interface Props {
   pubDate?: Date;
 }
 
+import "@fontsource-variable/space-grotesk";
+import "@fontsource/ibm-plex-mono";
 import Seo from "../components/Seo.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import "@fontsource-variable/space-grotesk";
-import "@fontsource/ibm-plex-mono";
 import "../styles/global.css";
 const { title, description, author, url, pubDate } = Astro.props;
 ---
@@ -25,21 +25,15 @@ const { title, description, author, url, pubDate } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <Seo {title} {description} {author} {url} {pubDate} />
     <script is:inline>
-      const savedTheme = localStorage.getItem("theme");
-      const prefersDark = window.matchMedia(
-        "(prefers-color-scheme: dark)",
-      ).matches;
-      const prefersLight = window.matchMedia(
-        "(prefers-color-scheme: light)",
-      ).matches;
-
-      if (savedTheme === "light" || (!savedTheme && prefersLight)) {
-        document.documentElement.classList.remove("dark");
-        document.documentElement.classList.add("light");
-      } else if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
-        document.documentElement.classList.remove("light");
-        document.documentElement.classList.add("dark");
-      }
+      (function () {
+        const saved = localStorage.getItem("theme");
+        const prefersDark = window.matchMedia(
+          "(prefers-color-scheme: dark)",
+        ).matches;
+        document.documentElement.classList.add(
+          saved || (prefersDark ? "dark" : "light"),
+        );
+      })();
     </script>
   </head>
   <body class="body-margin">

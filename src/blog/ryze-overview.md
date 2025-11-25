@@ -33,7 +33,7 @@ See the [SOURCE CODE](https://github.com/8366888C/Ryze) for more details.
 
 <figure class="group">
   <a href="https://pagespeed.web.dev/analysis/https-ryze-pages-dev/pq9idv766z?form_factor=desktop">
-	<img loading="lazy" alt="Ryze Lighthouse Score" src="/image/ryze-lighthouse-score.png">
+	<img loading="lazy" alt="Ryze Lighthouse Score" src="/ryze-lighthouse-score.png">
   <figcaption>Ryze Lighthouse Score</figcaption>
   </a>
 </figure>

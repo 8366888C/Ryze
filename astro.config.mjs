@@ -18,7 +18,7 @@ export default defineConfig({
     shikiConfig: {
       defaultColor: false,
       themes: {
-        light: "one-light",
+        light: "plastic", // one-light
         dark: "plastic",
       },
       wrap: true,
