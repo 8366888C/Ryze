@@ -118,7 +118,7 @@
 
     /* quote */
     blockquote {
-      @apply bg-accent/26 ring-accent text-accent my-3 rounded-lg px-3 py-1 opacity-80 ring-1;
+      @apply bg-foreground/13 ring-accent text-foreground my-3 px-6 py-3 opacity-80 ring-1;
     }
 
     /* bold */
@@ -188,7 +188,7 @@
       @apply relative my-8 select-none;
     }
     figcaption {
-      @apply absolute inset-0 flex items-center justify-center bg-black/40 p-3 text-center text-white/86 opacity-0 transition-all duration-150 ease-in-out group-hover:opacity-100 sm:text-xl md:text-2xl lg:text-3xl;
+      @apply absolute inset-0 flex items-center justify-center bg-black/40 p-3 text-center text-lg text-white/86 opacity-0 transition-all duration-150 ease-in-out group-hover:opacity-100 sm:text-xl md:text-2xl lg:text-3xl;
     }
 
     /* media */

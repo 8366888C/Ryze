@@ -1,6 +1,6 @@
 import { useState } from "react";
 // @ts-ignore
-import IconCopy from "../assets/icons/copy.svg?react";
+import IconLink from "../assets/icons/link.svg?react";
 // @ts-ignore
 import IconCheck from "../assets/icons/check.svg?react";
 
@@ -22,7 +22,7 @@ export default function CopyButton() {
       <IconCheck
         className={`${copied ? "size-6 opacity-100" : "size-0 opacity-0"} animation stroke-foreground animation stroke-2`}
       />
-      <IconCopy
+      <IconLink
         className={`${copied ? "size-0 opacity-0" : "size-6 opacity-100"} animation stroke-foreground animation stroke-1 hover:stroke-2`}
       />
     </button>

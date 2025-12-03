@@ -151,7 +151,7 @@ lorem ipsum dolor sit amet, consectetur adipiscing elit. Below is a
 ## [Images](#images)
 
 <figure class="group">
-<img src="/src/assets/images/background.svg" alt="Demo image showing typography styles" />
+<img src="/background.svg" alt="Demo image showing typography styles" />
 <figcaption>Caption describing the demo image</figcaption>
 </figure>
 
